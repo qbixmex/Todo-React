@@ -1,7 +1,11 @@
 import { FC, ReactElement } from 'react';
 import { TextField } from '@mui/material';
+import { ITextField } from './interfaces/ITextField';
 
-export const TaskTitleField: FC = (): ReactElement => {
+export const TaskTitleField: FC<ITextField> =({
+  disabled = false,
+  onChange = (e) => console.log(e),
+}): ReactElement => {
   return (
     <TextField
       id="title"
@@ -10,6 +14,8 @@ export const TaskTitleField: FC = (): ReactElement => {
       variant="outlined"
       size="small"
       fullWidth
+      disabled={ disabled }
+      onChange={ onChange }
     />
   );
 };
