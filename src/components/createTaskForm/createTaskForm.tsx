@@ -5,6 +5,7 @@ import {
   TaskTitleField,
   TaskDescriptionField,
   TaskDateField,
+  TaskSelectField,
 } from './';
 
 export const CreateTaskForm: FC = (): ReactElement => {
@@ -17,9 +18,15 @@ export const CreateTaskForm: FC = (): ReactElement => {
         <TaskTitleField disabled={true} />
         <TaskDescriptionField />
         <TaskDateField />
-      </Stack>
-      {/* Task Status */}
-      {/* Task Priority */}
+        <Stack
+          sx={{ width: '100%' }}
+          direction='row'
+          spacing={2}
+        >
+          <TaskSelectField />
+          <TaskSelectField />
+        </Stack>
+      </Stack>      
     </Box>
   );
 };
