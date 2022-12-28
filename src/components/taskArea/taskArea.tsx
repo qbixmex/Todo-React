@@ -2,6 +2,7 @@ import { FC, ReactElement } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import { taskCountersStyles, tasksStyles } from './taskArea.styles';
+import { TaskCounter } from '../../components';
 
 export const TaskArea: FC = (): ReactElement => {
   return (
@@ -18,9 +19,9 @@ export const TaskArea: FC = (): ReactElement => {
         justifyContent="center"
       >
         <Grid item xs={12} md={10} sx={taskCountersStyles}>
-          <Box>Task Counter</Box>
-          <Box>Task Counter</Box>
-          <Box>Task Counter</Box>
+          <TaskCounter />
+          <TaskCounter />
+          <TaskCounter />
         </Grid>
         <Grid item xs={10} md={8} sx={tasksStyles}>
           <Box>Tasks Will come over here</Box>
