@@ -8,9 +8,11 @@ import {
 import { ITaskCounter } from './interfaces/ITaskCounter';
 import { Status } from '../createTaskForm/enums/Status';
 import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
+import { emitCorrectLabel } from './helpers/emitCorrectLabel';
+import PropTypes from 'prop-types';
 
 export const TaskCounter: FC<ITaskCounter> = ({
-  status = Status.todo,
+  status = Status.completed,
   count = 0,
 }): ReactElement => {
   avatarStyles.borderColor = `${emitCorrectBorderColor(status)}`;
@@ -22,8 +24,17 @@ export const TaskCounter: FC<ITaskCounter> = ({
         </Typography>
       </Avatar>
       <Typography sx={subtitleStyles} variant="h5">
-        {status}
+        {emitCorrectLabel(status)}
       </Typography>
     </Box>
   );
+};
+
+TaskCounter.propTypes = {
+  status: PropTypes.oneOf([
+    Status.todo,
+    Status.inProgress,
+    Status.completed,
+  ]),
+  count: PropTypes.number,
 };
