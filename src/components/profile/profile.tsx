@@ -4,11 +4,11 @@ import { boxStyles, avatarStyles } from './profile.styles';
 import PropTypes from 'prop-types';
 
 interface IProfile {
-  name?: string;
+  name: string;
 }
 
 export const Profile: FC<IProfile> = (props): ReactElement => {
-  const { name = 'John'} = props;
+  const { name } = props;
   return (
     <Box sx={boxStyles}>
       <Avatar sx={avatarStyles}>
@@ -27,5 +27,5 @@ export const Profile: FC<IProfile> = (props): ReactElement => {
 };
 
 Profile.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
 };

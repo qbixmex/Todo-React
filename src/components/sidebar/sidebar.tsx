@@ -5,8 +5,8 @@ import { Profile } from '../';
 
 export const Sidebar: FC = (): ReactElement => {
   return (
-    <Grid item md={4} sx={sidebarStyles}>
-      <Profile name='Peter Parker' />
+    <Grid item sm={12} md={4} sx={sidebarStyles}>
+      <Profile name='Miles Morales' />
     </Grid>
   );
 };
