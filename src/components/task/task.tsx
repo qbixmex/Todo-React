@@ -4,13 +4,27 @@ import { boxStyles } from './task.styles';
 import { TaskHeader } from './_taskHeader';
 import { TaskDescription } from './_taskDescription';
 import { TaskFooter } from './_taskFooter';
+import { ITask } from './interfaces/ITask';
+import { Status } from '../createTaskForm/enums/Status';
+import { Priority } from '../createTaskForm/enums/Priority';
 
-export const Task: FC = (): ReactElement => {
+export const Task: FC<ITask> = ({
+  title = 'Test Title',
+  date = new Date('1970-01-02'),
+  description = 'Lorem ipsum dolor sit amet',
+  priority = Priority.normal,
+  status = Status.completed,
+  onStatusChange = (e) => console.log(e),
+  onClick = (e) => console.log(e),
+}): ReactElement => {
   return (
     <Box sx={boxStyles}>
-      <TaskHeader />
-      <TaskDescription />
-      <TaskFooter />
+      <TaskHeader title={title} date={date} />
+      <TaskDescription description={description} />
+      <TaskFooter
+        onClick={onClick}
+        onStatusChange={onStatusChange}
+      />
     </Box>
   );
 };
