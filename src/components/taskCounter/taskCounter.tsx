@@ -1,14 +1,20 @@
 import { FC, ReactElement } from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
-import { taskCounterStyles } from './taskCounter.styles';
+import {
+  taskCounterStyles,
+  avatarStyles,
+  subtitleStyles,
+} from './taskCounter.styles';
 
 export const TaskCounter: FC = (): ReactElement => {
   return (
     <Box sx={taskCounterStyles}>
-      <Avatar>
-        <Typography>10</Typography>
+      <Avatar sx={avatarStyles}>
+        <Typography color="white" variant="h4">10</Typography>
       </Avatar>
-      <Typography>Subtitle</Typography>
+      <Typography sx={subtitleStyles} variant="h5">
+        Subtitle
+      </Typography>
     </Box>
   );
 };
