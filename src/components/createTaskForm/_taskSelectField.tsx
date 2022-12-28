@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { ISelectField } from './interfaces/ISelectField';
 import { SelectChangeEvent } from '@mui/material';
-import PropTypes, { string } from 'prop-types';
+import PropTypes from 'prop-types';
 
 
 export const TaskSelectField: FC<ISelectField> = ({

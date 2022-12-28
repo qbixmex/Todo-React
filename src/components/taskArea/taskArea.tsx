@@ -1,10 +1,31 @@
 import { FC, ReactElement } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Box, Typography } from '@mui/material';
+import { format } from 'date-fns';
+import { taskCountersStyles, tasksStyles } from './taskArea.styles';
 
 export const TaskArea: FC = (): ReactElement => {
   return (
-    <Grid item sm={12} md={8} px={4}>
-      <h2>Task Area</h2>
+    <Grid item xs={12} md={8} px={4}>
+      <Box mb={8} px={4}>
+        <Typography my={2}>
+          Status of your tasks as on{' '}
+          { format(new Date(), 'PPPP') }
+        </Typography>
+      </Box>
+      <Grid
+        container
+        display="flex"
+        justifyContent="center"
+      >
+        <Grid item xs={12} md={10} sx={taskCountersStyles}>
+          <Box>Task Counter</Box>
+          <Box>Task Counter</Box>
+          <Box>Task Counter</Box>
+        </Grid>
+        <Grid item xs={10} md={8} sx={tasksStyles}>
+          <Box>Tasks Will come over here</Box>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };

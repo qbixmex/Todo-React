@@ -5,7 +5,7 @@ import { Profile, CreateTaskForm } from '../';
 
 export const Sidebar: FC = (): ReactElement => {
   return (
-    <Grid item sm={12} md={4} sx={sidebarStyles}>
+    <Grid item xs={12} md={4} sx={sidebarStyles}>
       <Profile name='Miles Morales' />
       <CreateTaskForm />
     </Grid>
