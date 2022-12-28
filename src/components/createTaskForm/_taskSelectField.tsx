@@ -5,6 +5,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { ISelectField } from './interfaces/ISelectField';
 import { SelectChangeEvent } from '@mui/material';
+import PropTypes, { string } from 'prop-types';
+
 
 export const TaskSelectField: FC<ISelectField> = ({
   name = 'Select Box',
@@ -36,4 +38,18 @@ export const TaskSelectField: FC<ISelectField> = ({
       </Select>
     </FormControl>
   );
+};
+
+TaskSelectField.propTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    }).isRequired,
+  ),
+  disabled: PropTypes.bool,
 };
