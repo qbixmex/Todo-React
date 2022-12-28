@@ -8,5 +8,5 @@ export const boxStyles = {
   flexDirection: 'column',
   marginBottom: 4,
   padding: 2,
-  borderColor: 'error.light',
+  borderColor: 'primary.light',
 };
