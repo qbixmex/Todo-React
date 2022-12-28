@@ -26,8 +26,6 @@ export const TaskArea: FC = (): ReactElement => {
         </Grid>
         <Grid item xs={10} md={8} sx={tasksStyles}>
           <Task />
-          <Task />
-          <Task />
         </Grid>
       </Grid>
     </Grid>
