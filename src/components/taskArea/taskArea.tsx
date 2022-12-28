@@ -2,7 +2,8 @@ import { FC, ReactElement } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import { taskCountersStyles, tasksStyles } from './taskArea.styles';
-import { TaskCounter } from '../../components';
+import { TaskCounter, Task } from '../../components';
+import { Status } from '../createTaskForm/enums/Status';
 
 export const TaskArea: FC = (): ReactElement => {
   return (
@@ -19,12 +20,14 @@ export const TaskArea: FC = (): ReactElement => {
         justifyContent="center"
       >
         <Grid item xs={12} md={10} sx={taskCountersStyles}>
-          <TaskCounter />
-          <TaskCounter />
-          <TaskCounter />
+          <TaskCounter count={10} status={Status.todo} />
+          <TaskCounter count={2} status={Status.inProgress} />
+          <TaskCounter count={4} status={Status.completed} />
         </Grid>
         <Grid item xs={10} md={8} sx={tasksStyles}>
-          <Box>Tasks Will come over here</Box>
+          <Task />
+          <Task />
+          <Task />
         </Grid>
       </Grid>
     </Grid>

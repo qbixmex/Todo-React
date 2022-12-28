@@ -4,7 +4,7 @@ import { TaskCounterStatusType } from "../interfaces/ITaskCounter";
 export const emitCorrectLabel = (status: TaskCounterStatusType): string => {
   switch (status) {
     case Status.todo:
-      return `ToDo's`;
+      return `Todo`;
     case Status.inProgress:
       return 'In Progress';
     case Status.completed:
