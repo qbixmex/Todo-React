@@ -6,7 +6,7 @@ export const boxStyles = {
   border: '2px solid',
   justifyContent: 'flex-start',
   flexDirection: 'column',
-  marginBottom: 2,
-  padding: 4,
+  marginBottom: 4,
+  padding: 2,
   borderColor: 'error.light',
 };
