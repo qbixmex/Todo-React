@@ -6,7 +6,7 @@ import { Profile } from '../';
 export const Sidebar: FC = (): ReactElement => {
   return (
     <Grid item md={4} sx={sidebarStyles}>
-      <Profile />
+      <Profile name='Peter Parker' />
     </Grid>
   );
 };
