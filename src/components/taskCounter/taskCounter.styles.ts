@@ -11,7 +11,7 @@ export const avatarStyles = {
   width: '96px',
   height: '96px',
   marginBottom: '16px',
-  borderColor: 'warning.light',
+  borderColor: 'primary.light',
 };
 
 export const subtitleStyles = {

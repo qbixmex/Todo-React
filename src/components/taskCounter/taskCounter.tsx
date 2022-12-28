@@ -7,11 +7,13 @@ import {
 } from './taskCounter.styles';
 import { ITaskCounter } from './interfaces/ITaskCounter';
 import { Status } from '../createTaskForm/enums/Status';
+import { emitCorrectBorderColor } from './helpers/emitCorrectBorderColor';
 
 export const TaskCounter: FC<ITaskCounter> = ({
-  status = Status.completed,
+  status = Status.todo,
   count = 0,
 }): ReactElement => {
+  avatarStyles.borderColor = `${emitCorrectBorderColor(status)}`;
   return (
     <Box sx={taskCounterStyles}>
       <Avatar sx={avatarStyles}>
