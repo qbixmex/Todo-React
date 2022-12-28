@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { taskCountersStyles, tasksStyles } from './taskArea.styles';
 import { TaskCounter, Task } from '../../components';
 import { Status } from '../createTaskForm/enums/Status';
+import { Priority } from '../createTaskForm/enums/Priority';
 
 export const TaskArea: FC = (): ReactElement => {
   return (
@@ -25,8 +26,9 @@ export const TaskArea: FC = (): ReactElement => {
           <TaskCounter count={4} status={Status.completed} />
         </Grid>
         <Grid item xs={10} md={8} sx={tasksStyles}>
-          <Task />
-          <Task />
+          <Task title='GO to the store' priority={ Priority.high } />
+          <Task title='GO to the job' priority={ Priority.low } />
+          <Task title='GO to the job' priority={ Priority.normal } />
         </Grid>
       </Grid>
     </Grid>

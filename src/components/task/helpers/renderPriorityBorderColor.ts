@@ -5,7 +5,7 @@ export const renderPriorityBorderColor = (priority: string): string => {
     case Priority.low:
       return 'info.light';
     case Priority.normal:
-      return 'grey.900';
+      return 'grey.700';
     case Priority.high:
       return 'error.light';
       default:
