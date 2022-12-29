@@ -33,6 +33,22 @@ export const CreateTaskForm: FC = (): ReactElement => {
       )
   );
 
+  const createTaskHandler = () => {
+    if (!title || !date || !description) {
+      return;
+    }
+
+    const task: ICreateTask = {
+      title,
+      description,
+      date: date.toString(),
+      status,
+      priority,
+    };
+
+    createTaskMutation.mutate(task);
+  };
+
   return (
     <Box sx={boxStyles}>
       <Alert
@@ -99,9 +115,11 @@ export const CreateTaskForm: FC = (): ReactElement => {
           />
         </Stack>
         {/* <LinearProgress /> */}
-        <Button
+        <Button          
           variant='contained'
           size='large'
+          fullWidth
+          onClick={createTaskHandler}
         >Create Task</Button>
       </Stack>
     </Box>
