@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 export const TaskDescriptionField: FC<ITextField> = ({
   disabled = false,
+  value = '',
   onChange = (e) => console.log(e),
 }): ReactElement => {
   return (
@@ -19,6 +20,7 @@ export const TaskDescriptionField: FC<ITextField> = ({
       fullWidth
       disabled={disabled}
       onChange={onChange}
+      value={value}
     />
   );
 };

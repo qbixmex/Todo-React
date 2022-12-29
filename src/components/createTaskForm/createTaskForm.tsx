@@ -1,4 +1,4 @@
-import { FC, ReactElement, useState } from 'react';
+import { FC, ReactElement, useState, useEffect } from 'react';
 import {
   Box, Typography, Stack, LinearProgress,
   Button, Alert, AlertTitle,
@@ -22,6 +22,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
   const [date, setDate] = useState<Date|null>(new Date());
   const [status, setStatus] = useState<string>(Status.todo);
   const [priority, setPriority] = useState<string>(Priority.normal);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   //* Create Task Mutation
   const createTaskMutation = useMutation(
@@ -49,24 +50,48 @@ export const CreateTaskForm: FC = (): ReactElement => {
     createTaskMutation.mutate(task);
   };
 
+  //* Manage SideEffects inside the application 
+  useEffect(() => {
+    if (createTaskMutation.isSuccess) {
+      setShowSuccess(true);
+      setTitle('');
+      setDescription('');
+      setDate(null);
+      setStatus('')
+      setPriority('')
+    }
+
+    const successTimeout = setTimeout(() => {
+      setShowSuccess(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(successTimeout);
+    }
+  }, [createTaskMutation.isSuccess]);
+
   return (
     <Box sx={boxStyles}>
-      <Alert
-        severity='success'
-        sx={{ width: '100%', marginBottom: 2 }}
-      >
-        <AlertTitle>Success</AlertTitle>
-        The task has been created successfully
-      </Alert>
+      {showSuccess && (
+        <Alert
+          severity='success'
+          sx={{ width: '100%', marginBottom: 2 }}
+        >
+          <AlertTitle>Success</AlertTitle>
+          The task has been created successfully
+        </Alert>
+      )}
       <Typography mb={2} component='h2' variant='h6'>
         Create A Task
       </Typography>
       <Stack sx={{ width: '100%' }} spacing={2}>
         <TaskTitleField
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
           disabled={createTaskMutation.isLoading}
         />
         <TaskDescriptionField
+          value={description}
           onChange={(e) => setDescription(e.target.value)}
           disabled={createTaskMutation.isLoading}
         />
