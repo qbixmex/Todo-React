@@ -12,6 +12,8 @@ import {
 } from './';
 import { Status } from './enums/Status';
 import { Priority } from './enums/Priority';
+import { useMutation } from 'react-query';
+import { sendApiRequest } from '../../helpers/sendApiRequest';
 
 export const CreateTaskForm: FC = (): ReactElement => {
   const [title, setTitle] = useState<string|undefined>(undefined);
@@ -19,6 +21,15 @@ export const CreateTaskForm: FC = (): ReactElement => {
   const [date, setDate] = useState<Date|null>(new Date());
   const [status, setStatus] = useState<string>(Status.todo);
   const [priority, setPriority] = useState<string>(Priority.normal);
+
+  //* Create Task Mutation
+  const createTaskMutation = useMutation((data) =>
+    sendApiRequest(
+      'http://localhost:4000/api/tasks',
+      'POST',
+      data,
+    )
+  );
 
   return (
     <Box sx={boxStyles}>
@@ -85,7 +96,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
             ]}
           />
         </Stack>
-        <LinearProgress />
+        {/* <LinearProgress /> */}
         <Button
           variant='contained'
           size='large'
