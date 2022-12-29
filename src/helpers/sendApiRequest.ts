@@ -6,7 +6,7 @@ const returnCorrectRequest = (
 ): RequestInit => {
   if (method === 'GET') {
     return {
-      method: method,
+      method,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -14,7 +14,7 @@ const returnCorrectRequest = (
   }
 
   return {
-    method: method,
+    method,
     body: JSON.stringify(data),
     headers: {
       'Content-Type': 'application/json',
@@ -31,6 +31,7 @@ export const sendApiRequest = async <T>(
     url,
     returnCorrectRequest(method, data),
   );
+
   if (!response.ok) {
     const message = `An error has occurred: ${response.status}`;
     throw new Error(message);

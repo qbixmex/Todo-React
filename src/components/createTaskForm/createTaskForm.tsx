@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useState } from 'react';
 import { Box, Typography, Stack } from '@mui/material';
 import { boxStyles } from './createTaskStyles';
 import {
@@ -11,6 +11,12 @@ import { Status } from './enums/Status';
 import { Priority } from './enums/Priority';
 
 export const CreateTaskForm: FC = (): ReactElement => {
+  const [title, setTitle] = useState<string|undefined>(undefined);
+  const [description, setDescription] = useState<string|undefined>(undefined);
+  const [date, setDate] = useState<Date|null>(new Date());
+  const [status, setStatus] = useState<string>(Status.todo);
+  const [priority, setPriority] = useState<string>(Priority.normal);
+
   return (
     <Box sx={boxStyles}>
       <Typography mb={2} component='h2' variant='h6'>
