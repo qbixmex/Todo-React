@@ -1,5 +1,8 @@
 import { FC, ReactElement, useState } from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import {
+  Box, Typography, Stack, LinearProgress,
+  Button, Alert, AlertTitle,
+} from '@mui/material';
 import { boxStyles } from './createTaskStyles';
 import {
   TaskTitleField,
@@ -19,6 +22,13 @@ export const CreateTaskForm: FC = (): ReactElement => {
 
   return (
     <Box sx={boxStyles}>
+      <Alert
+        severity='success'
+        sx={{ width: '100%', marginBottom: 2 }}
+      >
+        <AlertTitle>Success</AlertTitle>
+        The task has been created successfully
+      </Alert>
       <Typography mb={2} component='h2' variant='h6'>
         Create A Task
       </Typography>
@@ -58,7 +68,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
             label="priority"
             name="priority"
             value={priority}
-            onChange={(e) => setStatus(e.target.value as string)}
+            onChange={(e) => setPriority(e.target.value as string)}
             items={[
               {
                 value: Priority.low,
@@ -75,7 +85,12 @@ export const CreateTaskForm: FC = (): ReactElement => {
             ]}
           />
         </Stack>
-      </Stack>      
+        <LinearProgress />
+        <Button
+          variant='contained'
+          size='large'
+        >Create Task</Button>
+      </Stack>
     </Box>
   );
 };
