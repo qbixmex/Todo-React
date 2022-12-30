@@ -11,6 +11,7 @@ import { useQuery, useMutation } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ITaskApi } from './interfaces/ITaskApi';
 import { IUpdateTask } from '../createTaskForm/interfaces/IUpdateTask';
+import { countTask } from './helpers/countTasks';
 
 export const TaskArea: FC = (): ReactElement => {
   //* Query Task API
@@ -71,10 +72,20 @@ export const TaskArea: FC = (): ReactElement => {
         justifyContent="center"
       >
         <Grid item xs={12} md={10} sx={taskCountersStyles}>
-          <TaskCounter count={0} status={Status.todo} />
-          <TaskCounter count={0} status={Status.inProgress} />
-          <TaskCounter count={0} status={Status.completed} />
+          <TaskCounter
+            status={Status.todo}
+            count={data ? countTask(data, Status.todo) : 0}
+          />
+          <TaskCounter
+            status={Status.inProgress}
+            count={data ? countTask(data, Status.inProgress) : 0}
+          />
+          <TaskCounter
+            status={Status.completed}
+            count={data ? countTask(data, Status.completed) : 0}
+          />
         </Grid>
+
         <Grid item xs={10} md={8} sx={tasksStyles}>
           <>
           {error && (
