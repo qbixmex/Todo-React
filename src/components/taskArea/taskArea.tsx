@@ -1,7 +1,7 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useContext, useEffect } from 'react';
+import { TaskStatusChangedContext } from '../../context';
 import {
-  Grid, Box, Typography, Alert,
-  AlertTitle, LinearProgress
+  Grid, Box, Typography, Alert, AlertTitle, LinearProgress,
 } from '@mui/material';
 import { format } from 'date-fns';
 import { taskCountersStyles, tasksStyles } from './taskArea.styles';
@@ -14,6 +14,9 @@ import { IUpdateTask } from '../createTaskForm/interfaces/IUpdateTask';
 import { countTask } from './helpers/countTasks';
 
 export const TaskArea: FC = (): ReactElement => {
+  //* Context
+  const { updated, toggle } = useContext(TaskStatusChangedContext);
+
   //* Query Task API
   const { error, isLoading, data, refetch } = useQuery(
     'tasks',
@@ -35,6 +38,18 @@ export const TaskArea: FC = (): ReactElement => {
       )
     )
   );
+
+  //* Refetch Tasks on create new one
+  useEffect(() => {
+    refetch();
+  }, [updated]);
+
+  //* Update states on switch in progress change
+  useEffect(() => {
+    if (updateTaskMutation.isSuccess) {
+      toggle();
+    }
+  }, [updateTaskMutation.isSuccess]);
 
   const onStatusChangeHandler = (
     id: string,

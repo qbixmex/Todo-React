@@ -36,7 +36,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
   );
 
   //* Context
-  const { updated, toggle } = useContext(TaskStatusChangedContext);
+  const { toggle } = useContext(TaskStatusChangedContext);
 
   const createTaskHandler = () => {
     if (!title || !date || !description) {
@@ -63,7 +63,7 @@ export const CreateTaskForm: FC = (): ReactElement => {
       setDate(null);
       setStatus('');
       setPriority('');
-      (toggle) && toggle();
+      toggle();
     }
 
     const successTimeout = setTimeout(() => {

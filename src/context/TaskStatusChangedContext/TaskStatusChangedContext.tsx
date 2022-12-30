@@ -8,12 +8,12 @@ import {
 
 type ContextType = {
   updated: boolean;
-  toggle: (() => void) | undefined;
+  toggle: () => void;
 };
 
 export const TaskStatusChangedContext = createContext<ContextType>({
   updated: false,
-  toggle: undefined,
+  toggle: () => console.log('Toggle is not defined'),
 });
 
 export const TaskStatusChangedContextProvider: FC<PropsWithChildren> = ({
