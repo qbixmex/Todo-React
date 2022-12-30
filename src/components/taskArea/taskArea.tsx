@@ -35,6 +35,18 @@ export const TaskArea: FC = (): ReactElement => {
     )
   );
 
+  const onStatusChangeHandler = (
+    id: string,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    updateTaskMutation.mutate({
+      id,
+      status: event.target.checked
+        ? Status.inProgress
+        : Status.todo,
+    })
+  };
+
   return (
     <Grid item xs={12} md={8} px={4}>
       <Box mb={8} px={4}>
@@ -83,6 +95,7 @@ export const TaskArea: FC = (): ReactElement => {
                     description={task.description}
                     priority={task.priority}
                     status={task.status}
+                    onStatusChange={onStatusChangeHandler}
                   />
                 ): (false);
               })
