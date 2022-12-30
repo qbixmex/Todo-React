@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import {
   Grid, Box, Typography, Alert,
   AlertTitle, LinearProgress
@@ -44,6 +44,16 @@ export const TaskArea: FC = (): ReactElement => {
       status: event.target.checked
         ? Status.inProgress
         : Status.todo,
+    })
+  };
+
+  const markCompleteHandler = (
+    id: string,
+    _event: React.MouseEvent<HTMLButtonElement|HTMLAnchorElement>,
+  ) => {
+    updateTaskMutation.mutate({
+      id,
+      status: Status.completed,
     })
   };
 
@@ -96,6 +106,7 @@ export const TaskArea: FC = (): ReactElement => {
                     priority={task.priority}
                     status={task.status}
                     onStatusChange={onStatusChangeHandler}
+                    onClick={markCompleteHandler}
                   />
                 ): (false);
               })
