@@ -55,16 +55,23 @@ export const TaskArea: FC = (): ReactElement => {
               Start by creating some tasks!
             </Alert>
           )}
-          {data?.map((task) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              description={task.description}
-              priority={task.priority}
-              status={task.status}
-            />
-          ))}
+          {isLoading
+            ? (<LinearProgress />)
+            : (
+              Array.isArray(data)
+              && (data.length > 0)
+              && data?.map((task, index) => (
+                <Task
+                  key={task.id + index}
+                  id={task.id}
+                  title={task.title}
+                  date={new Date(task.date)}
+                  description={task.description}
+                  priority={task.priority}
+                  status={task.status}
+                />
+              ))
+          )}
           </>
         </Grid>
       </Grid>

@@ -5,7 +5,7 @@ export interface ITaskApi {
   id: string;
   title: string;
   description: string;
-  data: string;
+  date: string;
   priority: `${Priority}`;
   status: `${Status}`;
 }
