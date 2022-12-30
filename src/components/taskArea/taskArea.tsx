@@ -7,11 +7,13 @@ import { format } from 'date-fns';
 import { taskCountersStyles, tasksStyles } from './taskArea.styles';
 import { TaskCounter, Task } from '../../components';
 import { Status } from '../createTaskForm/enums/Status';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ITaskApi } from './interfaces/ITaskApi';
+import { IUpdateTask } from '../createTaskForm/interfaces/IUpdateTask';
 
 export const TaskArea: FC = (): ReactElement => {
+  //* Query Task API
   const { error, isLoading, data, refetch } = useQuery(
     'tasks',
     async () => {
@@ -20,6 +22,17 @@ export const TaskArea: FC = (): ReactElement => {
         'GET',
       );
     }
+  );
+
+  //* Update task mutation
+  const updateTaskMutation = useMutation(
+    (data: IUpdateTask) => (
+      sendApiRequest(
+        'http://localhost:4000/api/tasks',
+        'PATCH',
+        data
+      )
+    )
   );
 
   return (
