@@ -5,6 +5,8 @@ import { boxStyles } from './_taskFooter.styles';
 import PropTypes from 'prop-types';
 
 export const TaskFooter: FC<ITaskFooter> = ({
+  id,
+  status,
   onClick = (e) => console.log(e),
   onStatusChange = (e) => console.log(e),
 }): JSX.Element => {
@@ -13,11 +15,11 @@ export const TaskFooter: FC<ITaskFooter> = ({
       <FormControlLabel
         label="In Progress"
         control={
-        <Switch
-          color="warning"
-          onChange={onStatusChange}
-        />
-      }
+          <Switch
+            color="warning"
+            onChange={onStatusChange}
+          />
+        }
       />
       <Button
         variant="contained"
@@ -31,6 +33,8 @@ export const TaskFooter: FC<ITaskFooter> = ({
 };
 
 TaskFooter.propTypes = {
+  id: PropTypes.string.isRequired,
+  status: PropTypes.string,
   onStatusChange: PropTypes.func,
   onClick: PropTypes.func,
 };

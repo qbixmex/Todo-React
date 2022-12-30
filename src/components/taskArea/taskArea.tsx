@@ -1,10 +1,12 @@
 import { FC, ReactElement } from 'react';
-import { Grid, Box, Typography } from '@mui/material';
+import {
+  Grid, Box, Typography, Alert,
+  AlertTitle, LinearProgress
+} from '@mui/material';
 import { format } from 'date-fns';
 import { taskCountersStyles, tasksStyles } from './taskArea.styles';
 import { TaskCounter, Task } from '../../components';
 import { Status } from '../createTaskForm/enums/Status';
-import { Priority } from '../createTaskForm/enums/Priority';
 import { useQuery } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
 import { ITaskApi } from './interfaces/ITaskApi';
@@ -25,7 +27,7 @@ export const TaskArea: FC = (): ReactElement => {
       <Box mb={8} px={4}>
         <Typography my={2}>
           Status of your tasks as on{' '}
-          { format(new Date(), 'PPPP') }
+          {format(new Date(), 'PPPP')}
         </Typography>
       </Box>
       <Grid
@@ -39,9 +41,31 @@ export const TaskArea: FC = (): ReactElement => {
           <TaskCounter count={4} status={Status.completed} />
         </Grid>
         <Grid item xs={10} md={8} sx={tasksStyles}>
-          <Task title='GO to the store' priority={ Priority.high } />
-          <Task title='GO to the job' priority={ Priority.low } />
-          <Task title='GO to the job' priority={ Priority.normal } />
+          <>
+          {error && (
+            <Alert severity="error">
+              <AlertTitle>Error</AlertTitle>
+              There was an error fetching your tasks
+            </Alert>
+          )}
+          {(!error && (Array.isArray(data)) && data.length === 0) && (
+            <Alert severity="warning">
+              <AlertTitle>Warning</AlertTitle>
+              You do not have any tasks created yet.<br />
+              Start by creating some tasks!
+            </Alert>
+          )}
+          {data?.map((task) => (
+            <Task
+              key={task.id}
+              id={task.id}
+              title={task.title}
+              description={task.description}
+              priority={task.priority}
+              status={task.status}
+            />
+          ))}
+          </>
         </Grid>
       </Grid>
     </Grid>
