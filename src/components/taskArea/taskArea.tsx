@@ -7,12 +7,16 @@ import { Status } from '../createTaskForm/enums/Status';
 import { Priority } from '../createTaskForm/enums/Priority';
 import { useQuery } from 'react-query';
 import { sendApiRequest } from '../../helpers/sendApiRequest';
+import { ITaskApi } from './interfaces/ITaskApi';
 
 export const TaskArea: FC = (): ReactElement => {
   const { error, isLoading, data, refetch } = useQuery(
     'tasks',
     async () => {
-      return await sendApiRequest('https://localhost:4000/tasks', 'GET');
+      return await sendApiRequest<ITaskApi[]>(
+        'http://localhost:4000/api/tasks',
+        'GET',
+      );
     }
   );
 
