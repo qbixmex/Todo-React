@@ -3,6 +3,7 @@ import { Box, Button, Switch, FormControlLabel } from '@mui/material';
 import { ITaskFooter } from './interfaces/ITaskFooter';
 import { boxStyles } from './_taskFooter.styles';
 import PropTypes from 'prop-types';
+import { Status } from '../createTaskForm/enums/Status';
 
 export const TaskFooter: FC<ITaskFooter> = ({
   id,
@@ -18,6 +19,7 @@ export const TaskFooter: FC<ITaskFooter> = ({
           <Switch
             color="warning"
             onChange={onStatusChange}
+            checked={status === Status.inProgress}
           />
         }
       />

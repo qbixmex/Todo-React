@@ -60,17 +60,19 @@ export const TaskArea: FC = (): ReactElement => {
             : (
               Array.isArray(data)
               && (data.length > 0)
-              && data?.map((task, index) => (
-                <Task
-                  key={task.id + index}
-                  id={task.id}
-                  title={task.title}
-                  date={new Date(task.date)}
-                  description={task.description}
-                  priority={task.priority}
-                  status={task.status}
-                />
-              ))
+              && data?.map((task, index) => {
+                return (task.status !== Status.completed) ? (
+                  <Task
+                    key={task.id + index}
+                    id={task.id}
+                    title={task.title}
+                    date={new Date(task.date)}
+                    description={task.description}
+                    priority={task.priority}
+                    status={task.status}
+                  />
+                ): (false);
+              })
           )}
           </>
         </Grid>
