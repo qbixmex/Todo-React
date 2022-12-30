@@ -5,8 +5,17 @@ import { taskCountersStyles, tasksStyles } from './taskArea.styles';
 import { TaskCounter, Task } from '../../components';
 import { Status } from '../createTaskForm/enums/Status';
 import { Priority } from '../createTaskForm/enums/Priority';
+import { useQuery } from 'react-query';
+import { sendApiRequest } from '../../helpers/sendApiRequest';
 
 export const TaskArea: FC = (): ReactElement => {
+  const { error, isLoading, data, refetch } = useQuery(
+    'tasks',
+    async () => {
+      return await sendApiRequest('https://localhost:4000/tasks', 'GET');
+    }
+  );
+
   return (
     <Grid item xs={12} md={8} px={4}>
       <Box mb={8} px={4}>
