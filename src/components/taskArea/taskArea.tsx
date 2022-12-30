@@ -71,9 +71,9 @@ export const TaskArea: FC = (): ReactElement => {
         justifyContent="center"
       >
         <Grid item xs={12} md={10} sx={taskCountersStyles}>
-          <TaskCounter count={10} status={Status.todo} />
-          <TaskCounter count={2} status={Status.inProgress} />
-          <TaskCounter count={4} status={Status.completed} />
+          <TaskCounter count={0} status={Status.todo} />
+          <TaskCounter count={0} status={Status.inProgress} />
+          <TaskCounter count={0} status={Status.completed} />
         </Grid>
         <Grid item xs={10} md={8} sx={tasksStyles}>
           <>
