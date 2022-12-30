@@ -1,4 +1,5 @@
-import { FC, ReactElement, useState, useEffect } from 'react';
+import { FC, ReactElement, useState, useEffect, useContext } from 'react';
+import { TaskStatusChangedContext } from '../../context';
 import {
   Box, Typography, Stack, LinearProgress,
   Button, Alert, AlertTitle,
@@ -34,6 +35,9 @@ export const CreateTaskForm: FC = (): ReactElement => {
       )
   );
 
+  //* Context
+  const { updated, toggle } = useContext(TaskStatusChangedContext);
+
   const createTaskHandler = () => {
     if (!title || !date || !description) {
       return;
@@ -57,8 +61,9 @@ export const CreateTaskForm: FC = (): ReactElement => {
       setTitle('');
       setDescription('');
       setDate(null);
-      setStatus('')
-      setPriority('')
+      setStatus('');
+      setPriority('');
+      (toggle) && toggle();
     }
 
     const successTimeout = setTimeout(() => {

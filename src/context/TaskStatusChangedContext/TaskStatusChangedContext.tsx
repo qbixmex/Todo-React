@@ -6,9 +6,14 @@ import {
   useState,
 } from 'react';
 
-export const TaskStatusChangedContext = createContext({
+type ContextType = {
+  updated: boolean;
+  toggle: (() => void) | undefined;
+};
+
+export const TaskStatusChangedContext = createContext<ContextType>({
   updated: false,
-  toggle: () => {},
+  toggle: undefined,
 });
 
 export const TaskStatusChangedContextProvider: FC<PropsWithChildren> = ({
